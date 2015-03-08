@@ -45,25 +45,26 @@ describe('suncalc', function() {
 
   it('should return moon position data for given time and location', function() {
     var moonPos = SolarCalc.getMoonPosition(date, lat, lng);
+    // assert.equal(1,moonPos.altitude);
 
-    assert.ok(Math.abs(-0.9783999522438226-moonPos.azimuth) < 1E15);
-    assert.ok(Math.abs(0.00696972775489191-moonPos.altitude) < 1E15);
-    assert.ok(Math.abs(364121.37256256194-moonPos.distance) < 1E15);
+    assert.ok(Math.abs(2.1631927013459706-moonPos.azimuth) < 1E-15);
+    assert.ok(Math.abs(0.00696972775489191-moonPos.altitude) < 1E-15);
+    assert.ok(Math.abs(364121.37256256194-moonPos.distance) < 1E-15);
   });
   
   it('should return fraction and angle of moon\'s illuminated limb and phase', function() {
     var moonIllum = SolarCalc.getMoonIllumination(date);
 
-    assert.ok(Math.abs(moonIllum.fraction - 0.4848068202456373) < 1E15);
-    assert.ok(Math.abs(moonIllum.phase - 0.7548368838538762) < 1E15);
-    assert.ok(Math.abs(moonIllum.angle - 1.6732942678578346) < 1E15);
+    assert.ok(Math.abs(moonIllum.fraction - 0.4848068202456373) < 1E-15);
+    assert.ok(Math.abs(moonIllum.phase - 0.7548368838538762) < 1E-15);
+    assert.ok(Math.abs(moonIllum.angle - 1.6732942678578346) < 1E-15);
 
   });
 
   it('should return moon rise and set times for given date and location', function() {
     var moonTimes = SolarCalc.getMoonTimes(date,lat,lng);
 
-    assert.equal(moonTimes, 'Mon, 04 Mar 2013 23:57:52 GMT');
+    assert.equal(moonTimes.rise.toUTCString(), 'Mon, 04 Mar 2013 23:57:52 GMT');
     assert.equal(moonTimes.set.toUTCString(), 'Mon, 04 Mar 2013 07:19:22 GMT');
 
   });
