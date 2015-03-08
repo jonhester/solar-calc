@@ -1,15 +1,15 @@
 {
-  "name": "solarcalc",
+  "name": "solar-calc",
   "version": "",
   "description": "A sunrise/sunset/moonrise/moonset calculator",
-  "main": "./lib/solarcalc.js",
+  "main": "./lib/solarCalc.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha",
     "lint": "./node_modules/.bin/eslint lib"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jonhester/solarcalc.git"
+    "url": "https://github.com/jonhester/solar-calc.git"
   },
   "keywords": [
     "sunrise",
@@ -22,13 +22,12 @@
   "author": "Jon Hester",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jonhester/solarcalc/issues"
+    "url": "https://github.com/jonhester/solar-calc/issues"
   },
-  "homepage": "https://github.com/jonhester/solarcalc",
+  "homepage": "https://github.com/jonhester/solar-calc",
   "devDependencies": {
     "eslint": "^0.16.0",
     "mocha": "^2.2.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
