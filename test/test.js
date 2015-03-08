@@ -27,51 +27,51 @@ describe('suncalc', function() {
   });
 
   it('get golden hour start for a given date and location', function() {
-    assert.equal('18:42', solarCalc.goldenHourStart);
+    assert.equal(1425854506000, solarCalc.goldenHourStart.getTime());
   });
 
    it('get golden hour end for a given date and location', function() {
-    assert.equal('08:10', solarCalc.goldenHourEnd);
+    assert.equal(1425816570000, solarCalc.goldenHourEnd.getTime());
   });
 
   it('get night end for a given date and location', function() {
-    assert.equal('06:11', solarCalc.nightEnd);
+    assert.equal(1425809446000, solarCalc.nightEnd.getTime());
   });
 
   it('get nautical dawn for a given date and location', function() {
-    assert.equal('06:40', solarCalc.nauticalDawn);
+    assert.equal(1425811226000, solarCalc.nauticalDawn.getTime());
   });
 
   it('get dawn for a given date and location', function() {
-    assert.equal('07:10', solarCalc.dawn);
+    assert.equal(1425813000000, solarCalc.dawn.getTime());
   });
 
   it('get sunrise for a given date and location', function() {
-    assert.equal('07:36', solarCalc.sunrise);
+    assert.equal(1425814530000, solarCalc.sunrise.getTime());
   });
 
   it('get sunriseEnd for a given date and location', function() {
-    assert.equal('07:38', solarCalc.sunriseEnd);
+    assert.equal(1425814688000, solarCalc.sunriseEnd.getTime());
   });
 
   it('get sunsetStart for a given date and location', function() {
-    assert.equal('19:13', solarCalc.sunsetStart);
+    assert.equal(1425856389000, solarCalc.sunsetStart.getTime());
   });
 
   it('get sunset for a given date and location', function() {
-    assert.equal('19:16', solarCalc.sunset);
+    assert.equal(1425856548000, solarCalc.sunset.getTime());
   });
 
   it('get dusk for a given date and location', function() {
-    assert.equal('19:41', solarCalc.dusk);
+    assert.equal(1425858080000, solarCalc.dusk.getTime());
   });
 
   it('get nautical dusk for a given date and location', function() {
-    assert.equal('20:11', solarCalc.nauticalDusk);
+    assert.equal(1425859857000, solarCalc.nauticalDusk.getTime());
   });
 
   it('get night start for a given date and location', function() {
-    assert.equal('20:41', solarCalc.nightStart);
+    assert.equal(1425861641000, solarCalc.nightStart.getTime());
   });
 
 
