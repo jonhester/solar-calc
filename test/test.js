@@ -63,7 +63,7 @@ describe('suncalc', function() {
   it('should return moon rise and set times for given date and location', function() {
     var moonTimes = SolarCalc.getMoonTimes(date,lat,lng);
 
-    assert.equal(moonTimes.rise.toUTCString(), 'Mon, 04 Mar 2013 23:57:52 GMT');
+    assert.equal(moonTimes, 'Mon, 04 Mar 2013 23:57:52 GMT');
     assert.equal(moonTimes.set.toUTCString(), 'Mon, 04 Mar 2013 07:19:22 GMT');
 
   });
