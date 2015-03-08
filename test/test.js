@@ -3,12 +3,6 @@
 var assert = require("assert"); // node.js core module
 var SolarCalc = require('../'); // our module
 
-var date = new Date('Sun Mar 08 2015 12:18:40 GMT-0500 (EDT)'),
-  lat = 35.78,
-  lng = -78.649999,
-  offset = -5,
-  dst = true;
-
 describe('suncalc', function() {
   
   describe('2015-03-08 in North Carolina', function() {
@@ -18,9 +12,7 @@ describe('suncalc', function() {
       solarCalc = new SolarCalc(
         new Date('Mar 08 2015'),
         35.78,
-        -78.649999,
-        -5,
-        true
+        -78.649999
       );
     });
 
