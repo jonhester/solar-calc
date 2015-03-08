@@ -1,6 +1,6 @@
 {
   "name": "solarcalc",
-  "version": "1.0.0",
+  "version": "",
   "description": "A sunrise/sunset/moonrise/moonset calculator",
   "main": "./lib/solarcalc.js",
   "scripts": {
