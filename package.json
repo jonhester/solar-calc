@@ -30,6 +30,8 @@
     "mocha": "^2.2.0"
   },
   "dependencies": {
-    "julian-date": "^1.0.1"
+    "julian-date": "^1.0.1",
+    "moment-timezone": "^0.3.0",
+    "tzwhere": "^1.0.0"
   }
 }

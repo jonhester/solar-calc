@@ -1,72 +1,79 @@
 'use strict';
 
 var assert = require("assert"); // node.js core module
-var SolarCalc = require('../');  // our module
+var SolarCalc = require('../'); // our module
 
-var date = new Date('2013-03-05UTC'),
-    lat = 50.5,
-    lng = 30.5;
-
-var testTimes = {
-    solarNoon: '2013-03-05T10:10:57Z',
-    nadir: '2013-03-04T22:10:57Z',
-    sunrise: '2013-03-05T04:34:56Z',
-    sunset: '2013-03-05T15:46:57Z',
-    sunriseEnd: '2013-03-05T04:38:19Z',
-    sunsetStart: '2013-03-05T15:43:34Z',
-    dawn: '2013-03-05T04:02:17Z',
-    dusk: '2013-03-05T16:19:36Z',
-    nauticalDawn: '2013-03-05T03:24:31Z',
-    nauticalDusk: '2013-03-05T16:57:22Z',
-    nightEnd: '2013-03-05T02:46:17Z',
-    night: '2013-03-05T17:35:36Z',
-    goldenHourEnd: '2013-03-05T05:19:01Z',
-    goldenHour: '2013-03-05T15:02:52Z'
-};
-
-
+var date = new Date('Sun Mar 08 2015 12:18:40 GMT-0500 (EDT)'),
+  lat = 35.78,
+  lng = -78.649999,
+  offset = -5,
+  dst = true;
 
 describe('suncalc', function() {
+  var solarCalc;
 
-  it('getPosition returns azimuth and altitude for the given time and location', function () {
-    var sunPos = SolarCalc.getPosition(date, lat, lng);
-
-    assert.equal(sunPos.azimuth,  0.6412750628729547);
-    assert.equal(sunPos.altitude, -0.7000406838781611);
-  });
-  
-  it('should return sun phases for the given date and location', function() {
-    var times = SolarCalc.getTimes(date,lat,lng);
-
-    for (var i in testTimes) {
-      assert.equal(new Date(testTimes[i]).toUTCString(), times[i].toUTCString(), i);
-    }
+  beforeEach(function() {
+    solarCalc = new SolarCalc(
+      new Date('Mar 08 2015'),
+      35.78,
+      -78.649999,
+      -5,
+      true
+    );
   });
 
-  it('should return moon position data for given time and location', function() {
-    var moonPos = SolarCalc.getMoonPosition(date, lat, lng);
-    // assert.equal(1,moonPos.altitude);
-
-    assert.ok(Math.abs(2.1631927013459706-moonPos.azimuth) < 1E-15);
-    assert.ok(Math.abs(0.00696972775489191-moonPos.altitude) < 1E-15);
-    assert.ok(Math.abs(364121.37256256194-moonPos.distance) < 1E-15);
-  });
-  
-  it('should return fraction and angle of moon\'s illuminated limb and phase', function() {
-    var moonIllum = SolarCalc.getMoonIllumination(date);
-
-    assert.ok(Math.abs(moonIllum.fraction - 0.4848068202456373) < 1E-15);
-    assert.ok(Math.abs(moonIllum.phase - 0.7548368838538762) < 1E-15);
-    assert.ok(Math.abs(moonIllum.angle - 1.6732942678578346) < 1E-15);
-
+  it('get julian date for a given date', function() {
+    assert.equal(2457089.5, solarCalc.julianDate);
   });
 
-  it('should return moon rise and set times for given date and location', function() {
-    var moonTimes = SolarCalc.getMoonTimes(date,lat,lng);
-
-    assert.equal(moonTimes.rise.toUTCString(), 'Mon, 04 Mar 2013 23:57:52 GMT');
-    assert.equal(moonTimes.set.toUTCString(), 'Mon, 04 Mar 2013 07:19:22 GMT');
-
+  it('get golden hour start for a given date and location', function() {
+    assert.equal('18:42', solarCalc.goldenHourStart);
   });
+
+   it('get golden hour end for a given date and location', function() {
+    assert.equal('08:10', solarCalc.goldenHourEnd);
+  });
+
+  it('get night end for a given date and location', function() {
+    assert.equal('06:11', solarCalc.nightEnd);
+  });
+
+  it('get nautical dawn for a given date and location', function() {
+    assert.equal('06:40', solarCalc.nauticalDawn);
+  });
+
+  it('get dawn for a given date and location', function() {
+    assert.equal('07:10', solarCalc.dawn);
+  });
+
+  it('get sunrise for a given date and location', function() {
+    assert.equal('07:36', solarCalc.sunrise);
+  });
+
+  it('get sunriseEnd for a given date and location', function() {
+    assert.equal('07:38', solarCalc.sunriseEnd);
+  });
+
+  it('get sunsetStart for a given date and location', function() {
+    assert.equal('19:13', solarCalc.sunsetStart);
+  });
+
+  it('get sunset for a given date and location', function() {
+    assert.equal('19:16', solarCalc.sunset);
+  });
+
+  it('get dusk for a given date and location', function() {
+    assert.equal('19:41', solarCalc.dusk);
+  });
+
+  it('get nautical dusk for a given date and location', function() {
+    assert.equal('20:11', solarCalc.nauticalDusk);
+  });
+
+  it('get night start for a given date and location', function() {
+    assert.equal('20:41', solarCalc.nightStart);
+  });
+
+
 
 });
