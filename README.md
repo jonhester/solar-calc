@@ -24,8 +24,8 @@ each is a `Date` object
 | `dusk`          | dusk (evening nautical twilight starts)                                  |
 | `nauticalDusk`  | nautical dusk (evening astronomical twilight starts)                     |
 | `night`         | night starts (dark enough for astronomical observations)                 |
-| `nadir`         | nadir (darkest moment of the night, sun is in the lowest position)       |
 | `nightEnd`      | night ends (morning astronomical twilight starts)                        |
 | `nauticalDawn`  | nautical dawn (morning nautical twilight starts)                         |
 | `dawn`          | dawn (morning nautical twilight ends, morning civil twilight starts)     |
 
+Gladly accepting pull requests!
