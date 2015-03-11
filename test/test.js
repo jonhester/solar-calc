@@ -20,6 +20,10 @@ describe('suncalc', function() {
       assert.equal(2457089.5, solarCalc.julianDate);
     });
 
+    it('get solar noon', function() {
+      assert.equal(1425835523000, solarCalc.solarNoon.getTime());
+    });
+
     it('get golden hour start for a given date and location', function() {
       assert.equal(1425854506000, solarCalc.goldenHourStart.getTime());
     });
@@ -67,6 +71,7 @@ describe('suncalc', function() {
     it('get night start for a given date and location', function() {
       assert.equal(1425861641000, solarCalc.nightStart.getTime());
     });
+
   });
 
   describe('2015-06-23 in extreme latitude', function() {
@@ -86,6 +91,10 @@ describe('suncalc', function() {
       assert.equal(2457196.5, solarCalc.julianDate);
     });
 
+    it('get solar noon', function() {
+      assert.equal(1435075933000, solarCalc.solarNoon.getTime());
+    });
+    
     it('get golden hour start for a given date and location', function() {
       assert.equal(1439856000000, solarCalc.goldenHourStart.getTime());
     });
