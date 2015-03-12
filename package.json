@@ -4,7 +4,7 @@
   "description": "A sunrise/sunset/moonrise/moonset calculator",
   "main": "./lib/solarCalc.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha",
+    "test": "./node_modules/.bin/mocha --compilers js:babel/register",
     "lint": "./node_modules/.bin/eslint lib"
   },
   "repository": {
@@ -26,6 +26,8 @@
   },
   "homepage": "https://github.com/jonhester/solar-calc",
   "devDependencies": {
+    "babel": "^4.7.8",
+    "babel-eslint": "^2.0.0",
     "eslint": "^0.16.0",
     "mocha": "^2.2.0"
   },
