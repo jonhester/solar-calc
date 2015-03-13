@@ -4,10 +4,11 @@
   "description": "A sunrise/sunset/moonrise/moonset calculator",
   "main": "index.js",
   "scripts": {
-    "compile": "babel -d src/ lib/",
+    "compile": "npm run clean && ./node_modules/.bin/babel src --out-dir lib",
     "prepublish": "npm run compile",
-    "test": "./node_modules/.bin/mocha --compilers js:babel/register",
-    "lint": "./node_modules/.bin/eslint lib"
+    "test": "npm run compile && ./node_modules/.bin/mocha",
+    "lint": "./node_modules/.bin/eslint lib",
+    "clean": "rm -rf lib"
   },
   "repository": {
     "type": "git",
