@@ -16,10 +16,6 @@ describe('suncalc', function() {
       );
     });
 
-    it('get julian date', function() {
-      assert.equal(2457089.5, solarCalc.julianDate);
-    });
-
     it('get solar noon', function() {
       assert.equal(1425835523000, solarCalc.solarNoon.getTime());
     });
@@ -72,6 +68,14 @@ describe('suncalc', function() {
       assert.equal(1425861641000, solarCalc.nightStart.getTime());
     });
 
+    it('should get moon illuminosity', function() {
+      assert.equal(83, Math.round(solarCalc.lunarIlluminosity * 100));
+    });
+
+    it('should get moon distance', function() {
+      assert.equal(384758, solarCalc.lunarDistance);
+    });
+
   });
 
   describe('2015-06-23 in extreme latitude', function() {
@@ -85,10 +89,6 @@ describe('suncalc', function() {
         -4,
         false
       );
-    });
-
-    it('get julian date', function() {
-      assert.equal(2457196.5, solarCalc.julianDate);
     });
 
     it('get solar noon', function() {
@@ -141,6 +141,14 @@ describe('suncalc', function() {
 
     it('get night start', function() {
       assert.equal(1445385600000, solarCalc.nightStart.getTime());
+    });
+
+    it('should get moon illuminosity', function() {
+      assert.equal(22, Math.round(solarCalc.lunarIlluminosity * 100));
+    });
+
+    it('should get moon distance', function() {
+      assert.equal(378178, solarCalc.lunarDistance);
     });
   });
 

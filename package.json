@@ -2,7 +2,7 @@
   "name": "solar-calc",
   "version": "1.0.1",
   "description": "A sunrise/sunset/moonrise/moonset calculator",
-  "main": "./lib/solarCalc.js",
+  "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha --compilers js:babel/register",
     "lint": "./node_modules/.bin/eslint lib"
