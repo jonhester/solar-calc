@@ -44,12 +44,20 @@ class SolarCalc {
     return this.sun.timeAtAngle(degreesBelowHorizon.sunriseEnd, false);
   }
 
-  get dawn() {
+  get civilDawn() {
     return this.sun.timeAtAngle(degreesBelowHorizon.twilight, true);
   }
 
-  get dusk() {
+  get dawn() {
+    return this.civilDawn;
+  }
+
+  get civilDusk() {
     return this.sun.timeAtAngle(degreesBelowHorizon.twilight, false);
+  }
+
+  get dusk() {
+    return this.civilDusk;
   }
 
   get nauticalDawn() {
@@ -61,11 +69,19 @@ class SolarCalc {
   }
 
   get nightStart() {
+    return this.astronomicalDusk;
+  }
+
+  get astronomicalDusk() {
     return this.sun.timeAtAngle(degreesBelowHorizon.night, false);
   }
 
-  get nightEnd() {
+  get astronomicalDawn() {
     return this.sun.timeAtAngle(degreesBelowHorizon.night, true);
+  }
+
+  get nightEnd() {
+    return this.astronomicalDawn;
   }
 
   get goldenHourStart() {
@@ -77,7 +93,6 @@ class SolarCalc {
   }
 
   get lunarDistance() {
-    console.log('this is a test')
     return this.moon.distance;
   }
 
