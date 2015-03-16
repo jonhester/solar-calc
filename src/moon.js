@@ -1,10 +1,10 @@
 'use strict';
 
 class Moon {
-  constructor(date, lat, long) {
+  constructor(date, latitude, longitude) {
     this.date = date;
-    this.lat = lat;
-    this.long = long;
+    this.latitude = latitude;
+    this.longitude = longitude;
 
     this.julianDate = getJD(date);
   }

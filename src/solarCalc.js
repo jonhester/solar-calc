@@ -13,15 +13,13 @@ const degreesBelowHorizon = {
 };
 
 class SolarCalc {
-  constructor(date, lat, long) {
+  constructor(date, latitude, longitude) {
     this.date = date;
-    this.lat = lat;
-    this.long = long;
+    this.lat = latitude;
+    this.longitude = longitude;
 
-    // this.julianDate = getJD(date);
-
-    this.sun = new Sun(date, lat, long);
-    this.moon = new Moon(date, lat, long);
+    this.sun = new Sun(date, latitude, longitude);
+    this.moon = new Moon(date, latitude, longitude);
   }
 
   get solarNoon() {

@@ -1,27 +1,27 @@
 'use strict';
 
 class Sun {
-  constructor(date, lat, long) {
+  constructor(date, latitude, longitude) {
     this.date = date;
-    this.lat = lat;
-    this.long = long;
+    this.latitude = latitude;
+    this.longitude = longitude;
 
     this.julianDate = getJD(date);
   }
 
   get solarNoon() {
-    return calcSolNoon(this.julianDate, this.long, this.date);
+    return calcSolNoon(this.julianDate, this.longitude, this.date);
   }
 
   timeAtAngle(angle, rising) {
-    return calcSunriseSet(rising, angle, this.julianDate, this.date, this.lat, this.long);
+    return calcSunriseSet(rising, angle, this.julianDate, this.date, this.latitude, this.longitude);
   }
 }
 
-function formatDate(date, minutes) {
+var formatDate = function(date, minutes) {
   var seconds = (minutes - Math.floor(minutes)) * 60;
   return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), 0, minutes, seconds));
-}
+};
 
 function calcTimeJulianCent(jd) {
   var T = (jd - 2451545.0) / 36525.0;
