@@ -3,7 +3,7 @@
   "version": "1.0.3",
   "description": "A sunrise/sunset/moonrise/moonset calculator",
   "main": "index.js",
-  "typings": "index.d.ts",
+  "types": "index.d.ts",
   "scripts": {
     "compile": "npm run clean && ./node_modules/.bin/babel src --out-dir lib",
     "prepublish": "npm run compile",
