@@ -1,7 +1,22 @@
-'use strict';
+import moment from 'moment';
 
-var Sun = require('./sun.js');
-var Moon = require('./moon.js');
+import Sun from './sun';
+import Moon from './moon';
+
+const round = (number, precision) => {
+  const factor = 10 ** precision;
+  const tempNumber = number * factor;
+  const roundedTempNumber = Math.round(tempNumber);
+  return roundedTempNumber / factor;
+};
+
+const toRadians = (degrees) => {
+  return degrees * (Math.PI / 180);
+};
+
+const toDegrees = (degrees) => {
+  return degrees * (180 /  Math.PI);
+};
 
 const degreesBelowHorizon = {
   sunrise: 0.833,
@@ -9,7 +24,7 @@ const degreesBelowHorizon = {
   twilight: 6,
   nauticalTwilight: 12,
   night: 18,
-  goldenHour: -6
+  goldenHour: -6,
 };
 
 class SolarCalc {
@@ -24,6 +39,46 @@ class SolarCalc {
 
   get solarNoon() {
     return this.sun.solarNoon;
+  }
+
+  get solarAzimuthAngle() {
+    const declination = toRadians(this.solarDeclination);
+    const zenith = toRadians(this.solarZenithAngle);
+
+    const numerator = -(Math.sin(toRadians(this.solarHourAngle)) * Math.cos(declination));
+    const denominator = Math.sin(zenith);
+    console.log('n', numerator)
+    console.log('d', denominator);
+    console.log(numerator/denominator);
+    console.log(Math.asin(numerator / denominator));
+    return toDegrees(Math.asin(numerator / denominator));
+  }
+
+  get solarHourAngle() {
+    const differenceInHours = (this.date - this.solarNoon) / 1000 / 60 / 60;
+    return differenceInHours * 15;
+  }
+
+  get solarZenithAngle() {
+    const declination = toRadians(this.solarDeclination);
+    const lat = toRadians(this.lat);
+    const zenithRadians = (Math.sin(lat) * Math.sin(declination)) +
+      (Math.cos(lat) * Math.cos(declination) *
+      Math.cos(toRadians(this.solarHourAngle)));
+
+    return toDegrees(zenithRadians);
+  }
+
+  get ordinalDay() {
+    const startOfYear = moment().startOf('year').format('YYYY-MM-DD');
+    const startOfYearUTC = moment.utc(startOfYear);
+    return moment(this.date).diff(startOfYearUTC) / 86400 / 1000;
+  }
+
+  get solarDeclination() {
+    const n = this.ordinalDay;
+    const radians = -Math.asin(0.39779 * Math.cos(toRadians(0.985665) * (n + 10) + toRadians(1.914) * Math.sin(toRadians(0.98665) * (n - 2))));
+    return toDegrees(radians);
   }
 
   get sunrise() {

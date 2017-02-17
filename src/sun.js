@@ -1,5 +1,3 @@
-'use strict';
-
 class Sun {
   constructor(date, latitude, longitude) {
     this.date = date;
