@@ -1,155 +1,99 @@
-'use strict';
+import test from 'ava';
 
-var assert = require("assert"); // node.js core module
-var SolarCalc = require('../'); // our module
+import SolarCalc from '../src/solarCalc';
 
-describe('suncalc', function() {
-  
-  describe('2015-03-08 in North Carolina', function() {
-    var solarCalc;
+let solarCalc1;
+let solarCalc2;
 
-    beforeEach(function() {
-      solarCalc = new SolarCalc(
-        new Date('Mar 08 2015'),
-        35.78,
-        -78.649999
-      );
-    });
+test.before('2015-03-08 in North Carolina', (t) => {
+  solarCalc1 = new SolarCalc(
+    new Date('Mar 08 2015'),
+    35.78,
+    -78.649999,
+  );
+});
 
-    it('get solar noon', function() {
-      assert.equal(1425835523000, solarCalc.solarNoon.getTime());
-    });
+test.before('2015-06-23 in extreme latitude', (t) => {
+  solarCalc2 = new SolarCalc(
+    new Date('Jun 23 2015'),
+      82.4508,
+      -62.5056,
+      -4,
+      false,
+  );
+});
 
-    it('get golden hour start', function() {
-      assert.equal(1425854506000, solarCalc.goldenHourStart.getTime());
-    });
+test('get solar noon', t => {
+  t.is(solarCalc1.solarNoon.getTime(), 1425835523000);
+  t.is(solarCalc2.solarNoon.getTime(), 1435075933000);
+});
 
-     it('get golden hour end', function() {
-      assert.equal(1425816570000, solarCalc.goldenHourEnd.getTime());
-    });
+test('golden hour start', t => {
+  t.is(solarCalc1.goldenHourStart.getTime(), 1425854506000);
+  t.is(solarCalc2.goldenHourStart.getTime(), 1439856000000);
+});
 
-    it('get night end', function() {
-      assert.equal(1425809446000, solarCalc.nightEnd.getTime());
-    });
+test('golden hour end', t => {
+  t.is(solarCalc1.goldenHourEnd.getTime(), 1425816570000);
+  t.is(solarCalc2.goldenHourEnd.getTime(), 1430006400000);
+});
 
-    it('get nautical dawn', function() {
-      assert.equal(1425811226000, solarCalc.nauticalDawn.getTime());
-    });
+test('get night end', t => {
+  t.is(solarCalc1.nightEnd.getTime(), 1425809446000);
+  t.is(solarCalc2.nightEnd.getTime(), 1424476800000);
+});
 
-    it('get dawn', function() {
-      assert.equal(1425813000000, solarCalc.dawn.getTime());
-    });
+test('nautical dawn', t => {
+  t.is(solarCalc1.nauticalDawn.getTime(), 1425811226000);
+  t.is(solarCalc2.nauticalDawn.getTime(), 1425859200000);
+});
 
-    it('get sunrise', function() {
-      assert.equal(1425814530000, solarCalc.sunrise.getTime());
-    });
+test('get dawn', t => {
+  t.is(solarCalc1.dawn.getTime(), 1425813000000);
+  t.is(solarCalc2.dawn.getTime(), 1427155200000);
+});
 
-    it('get sunriseEnd', function() {
-      assert.equal(1425814688000, solarCalc.sunriseEnd.getTime());
-    });
+test('get sunrise', t => {
+  t.is(solarCalc1.sunrise.getTime(), 1425814530000);
+  t.is(solarCalc2.sunrise.getTime(), 1428364800000);
+});
 
-    it('get sunsetStart', function() {
-      assert.equal(1425856389000, solarCalc.sunsetStart.getTime());
-    });
+test('sunrise end', t => {
+  t.is(solarCalc1.sunriseEnd.getTime(), 1425814688000);
+  t.is(solarCalc2.sunriseEnd.getTime(), 1428451200000);
+});
 
-    it('get sunset', function() {
-      assert.equal(1425856548000, solarCalc.sunset.getTime());
-    });
+test('sunset start', t => {
+  t.is(solarCalc1.sunsetStart.getTime(), 1425856389000);
+  t.is(solarCalc2.sunsetStart.getTime(), 1441411200000);
+});
 
-    it('get dusk', function() {
-      assert.equal(1425858080000, solarCalc.dusk.getTime());
-    });
+test('sunset', t => {
+  t.is(solarCalc1.sunset.getTime(), 1425856548000);
+  t.is(solarCalc2.sunset.getTime(), 1441497600000);
+});
 
-    it('get nautical dusk', function() {
-      assert.equal(1425859857000, solarCalc.nauticalDusk.getTime());
-    });
+test('dusk', t => {
+  t.is(solarCalc1.dusk.getTime(), 1425858080000);
+  t.is(solarCalc2.dusk.getTime(), 1442707200000);
+});
 
-    it('get night start', function() {
-      assert.equal(1425861641000, solarCalc.nightStart.getTime());
-    });
+test('nautical dusk', t => {
+  t.is(solarCalc1.nauticalDusk.getTime(), 1425859857000);
+  t.is(solarCalc2.nauticalDusk.getTime(), 1444003200000);
+});
 
-    it('should get moon illuminosity', function() {
-      assert.equal(83, Math.round(solarCalc.lunarIlluminosity * 100));
-    });
+test('night start', t => {
+  t.is(solarCalc1.nightStart.getTime(), 1425861641000);
+  t.is(solarCalc2.nightStart.getTime(), 1445385600000);
+});
 
-    it('should get moon distance', function() {
-      assert.equal(384758, solarCalc.lunarDistance);
-    });
+test('moon illuminosity', t => {
+  t.is(Math.round(solarCalc1.lunarIlluminosity * 100), 83);
+  t.is(Math.round(solarCalc2.lunarIlluminosity * 100), 22);
+});
 
-  });
-
-  describe('2015-06-23 in extreme latitude', function() {
-    var solarCalc;
-
-    beforeEach(function() {
-      solarCalc = new SolarCalc(
-        new Date('Jun 23 2015'),
-        82.4508,
-        -62.5056,
-        -4,
-        false
-      );
-    });
-
-    it('get solar noon', function() {
-      assert.equal(1435075933000, solarCalc.solarNoon.getTime());
-    });
-
-    it('get golden hour start', function() {
-      assert.equal(1439856000000, solarCalc.goldenHourStart.getTime());
-    });
-
-     it('get golden hour end', function() {
-      assert.equal(1430006400000, solarCalc.goldenHourEnd.getTime());
-    });
-
-    it('get night end', function() {
-      assert.equal(1424476800000, solarCalc.nightEnd.getTime());
-    });
-
-    it('get nautical dawn', function() {
-      assert.equal(1425859200000, solarCalc.nauticalDawn.getTime());
-    });
-
-    it('get dawn', function() {
-      assert.equal(1427155200000, solarCalc.dawn.getTime());
-    });
-
-    it('get sunrise', function() {
-      assert.equal(1428364800000, solarCalc.sunrise.getTime());
-    });
-
-    it('get sunriseEnd', function() {
-      assert.equal(1428451200000, solarCalc.sunriseEnd.getTime());
-    });
-
-    it('get sunsetStart', function() {
-      assert.equal(1441411200000, solarCalc.sunsetStart.getTime());
-    });
-
-    it('get sunset', function() {
-      assert.equal(1441497600000, solarCalc.sunset.getTime());
-    });
-
-    it('get dusk', function() {
-      assert.equal(1442707200000, solarCalc.dusk.getTime());
-    });
-
-    it('get nautical dusk', function() {
-      assert.equal(1444003200000, solarCalc.nauticalDusk.getTime());
-    });
-
-    it('get night start', function() {
-      assert.equal(1445385600000, solarCalc.nightStart.getTime());
-    });
-
-    it('should get moon illuminosity', function() {
-      assert.equal(22, Math.round(solarCalc.lunarIlluminosity * 100));
-    });
-
-    it('should get moon distance', function() {
-      assert.equal(378178, solarCalc.lunarDistance);
-    });
-  });
-
+test('moon distance', t => {
+  t.is(solarCalc1.lunarDistance, 384758);
+  t.is(solarCalc2.lunarDistance, 378178);
 });
