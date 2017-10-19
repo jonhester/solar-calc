@@ -12,20 +12,31 @@ const degreesBelowHorizon = {
   goldenHour: -6
 };
 
+//customZones = {"tziet": {angle:5,rising:false}}
 class SolarCalc {
-  constructor(date, latitude, longitude) {
+  constructor(date, latitude, longitude,customZones) {
+    let self=this;
     this.date = date;
     this.lat = latitude;
     this.longitude = longitude;
 
     this.sun = new Sun(date, latitude, longitude);
     this.moon = new Moon(date, latitude, longitude);
+
+    return new Proxy(this, {
+      get(target, prop) {
+        if ( !(prop in target)) {
+          if(!(prop in customZones)) throw new Error("Unknown property: "+prop);
+          return self.sun.timeAtAngle(customZones[prop].angle,customZones[prop].rising);
+        }
+        return target[prop];
+      }
+    });
   }
 
   get solarNoon() {
     return this.sun.solarNoon;
   }
-
   get sunrise() {
     return this.sun.timeAtAngle(degreesBelowHorizon.sunrise, true);
   }
