@@ -152,4 +152,65 @@ describe('suncalc', function() {
     });
   });
 
+  describe('2017-10-10 in Cleveland', function() {
+    var solarCalc;
+
+    beforeEach(function() {
+      var customZones={"tzeit": {angle:8.5,rising:false},
+      "alot_hashachar": {angle:16.1,rising:true},
+      "misheyakir_machmir":{angle:10.2,rising:true}};
+
+      solarCalc = new SolarCalc(
+        new Date('Oct 10 2017'),
+        41.503081,
+        -81.58916,
+        customZones
+      );
+    });
+
+    it('get alos', function() {
+      assert.equal(1507630274000, solarCalc.alot_hashachar.getTime());
+    });
+    it('get dawn', function() {
+      assert.equal(1507633517000, solarCalc.dawn.getTime());
+    });
+
+    it('get sunrise', function() {
+      assert.equal(1507635184000, solarCalc.sunrise.getTime());
+    });
+
+    it('get sunriseEnd', function() {
+      assert.equal(1507635357000, solarCalc.sunriseEnd.getTime());
+    });
+
+    it('get sunsetStart', function() {
+      assert.equal(1507675793000, solarCalc.sunsetStart.getTime());
+    });
+
+    it('get sunset', function() {
+      assert.equal(1507675965000, solarCalc.sunset.getTime());
+    });
+    it('get misheyakir_machmir', function() {
+      assert.equal(1507632169000, solarCalc.misheyakir_machmir.getTime());
+    });
+
+    it('get 3 different times', function() {
+      assert.equal(1507678431000, solarCalc.tzeit.getTime());
+      assert.equal(1507632169000, solarCalc.misheyakir_machmir.getTime());
+      assert.equal(1507635184000, solarCalc.sunrise.getTime());
+    });
+    it('should throw exception for unknown property', function() {
+       assert.throws(
+           function()  {
+               solarCalc.noname.getTime();
+           },
+           function(err) {
+               if ((err instanceof Error) && /Unknown property: noname/.test(err)) {
+                   return true;
+               }
+           },
+           'unexpected error');
+  });
+  });
+
 });
