@@ -201,7 +201,7 @@ describe('suncalc', function() {
     });
     it('should throw exception for unknown property', function() {
        assert.throws(
-           () => {
+           function()  {
                solarCalc.noname.getTime();
            },
            function(err) {
