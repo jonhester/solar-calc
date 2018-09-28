@@ -31,7 +31,7 @@ class SolarCalc {
   }
 
   get sunset() {
-    return this.sun.timeAtAngle(degreesBelowHorizon.sunrise);
+    return this.sun.timeAtAngle(degreesBelowHorizon.sunrise, false);
   }
 
   get sunriseEnd() {
