@@ -270,10 +270,8 @@ function calcSunriseSet(rise, angle, JD, date, latitude, longitude)
 function calcJDofNextPrevRiseSet(next, rise, type, JD, latitude, longitude) {
   var julianday = JD;
   var increment = ((next) ? 1.0 : -1.0);
-  var count = 0;
   var time = calcSunriseSetUTC(rise, type, julianday, latitude, longitude);
   while (!isNumber(time)) {
-    count += 1;
     julianday += increment;
     time = calcSunriseSetUTC(rise, type, julianday, latitude, longitude);
   }  
