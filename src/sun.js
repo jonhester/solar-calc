@@ -262,7 +262,7 @@ function calcSunriseSet(rise, angle, JD, date, latitude, longitude)
       }
       var timeUTC = calcSunriseSetUTC(rise, angle, jdy, latitude, longitude);
       var newTimeUTC = calcSunriseSetUTC(rise, angle, jdy + timeUTC / 1440.0, latitude, longitude);
-      var newDate = dayString(jdy)
+      var newDate = dayString(jdy);
       return formatDate(newDate, newTimeUTC);
     }
   }
@@ -274,7 +274,7 @@ function calcJDofNextPrevRiseSet(next, rise, type, JD, latitude, longitude) {
   while (!isNumber(time)) {
     julianday += increment;
     time = calcSunriseSetUTC(rise, type, julianday, latitude, longitude);
-  }  
+  }
   return julianday;
 }
 
