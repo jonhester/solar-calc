@@ -256,13 +256,13 @@ function calcSunriseSet(rise, angle, JD, date, latitude, longitude)
       var jdy;
       if (((latitude > 66.4) && (doy > 79) && (doy < 267)) ||
         ((latitude < -66.4) && ((doy < 83) || (doy > 263)))) { //previous sunrise/next sunset
-        jdy = calcJDofNextPrevRiseSet(!rise, rise, angle, JD, latitude, longitude);              
+        jdy = calcJDofNextPrevRiseSet(!rise, rise, angle, JD, latitude, longitude);
       } else { //previous sunset/next sunrise
         jdy = calcJDofNextPrevRiseSet(rise, rise, angle, JD, latitude, longitude);
       }
-      var timeUTC = calcSunriseSetUTC(rise, angle, jdy, latitude, longitude);
-      var newTimeUTC = calcSunriseSetUTC(rise, angle, jdy + timeUTC / 1440.0, latitude, longitude);
-      var newDate = dayString(jdy);
+      timeUTC = calcSunriseSetUTC(rise, angle, jdy, latitude, longitude);
+      newTimeUTC = calcSunriseSetUTC(rise, angle, jdy + timeUTC / 1440.0, latitude, longitude);
+      newDate = dayString(jdy);
       return formatDate(newDate, newTimeUTC);
     }
   }
