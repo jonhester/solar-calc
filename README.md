@@ -34,4 +34,4 @@ All properties are `Date` objects unless otherwise noted
 
 - `lunarDistance` (integer) the distance from the center of the eart to the center of the moon in kilometers
 
-- `luminosty` (number) the percentage of the moon that is illuminated in decimal form
+- `lunarIlluminosity` (number) the percentage of the moon that is illuminated in decimal form
