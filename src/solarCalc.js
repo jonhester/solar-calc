@@ -97,6 +97,10 @@ class SolarCalc {
   get lunarIlluminosity() {
     return this.moon.illuminosity;
   }
+
+  get sunAltitude() {
+    return this.sun.sunAltitude();
+  }
 }
 
 module.exports = SolarCalc;
