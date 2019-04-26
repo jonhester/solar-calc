@@ -16,6 +16,10 @@ class Sun {
   timeAtAngle(angle, rising) {
     return calcSunriseSet(rising, angle, this.julianDate, this.date, this.latitude, this.longitude);
   }
+
+  elevationAngle() {
+    return calcSolarElevationAngle(this.julianDate, this.latitude);
+  }
 }
 
 var formatDate = function(date, minutes) {
@@ -275,6 +279,17 @@ function calcJDofNextPrevRiseSet(next, rise, type, JD, latitude, longitude) {
   }
 
   return julianday;
+}
+
+function calcSolarElevationAngle(jd, latitude) {
+  var doy = calcDoyFromJD(jd);
+  var solarDec = degToRad(-23.45 * Math.cos(degToRad((360 / 365) * (doy + 10))));
+  var angle = 0; // at solar noon
+  var latitude = degToRad(latitude);
+
+  var elevationAngle = Math.asin(Math.sin(solarDec) * Math.sin(latitude) + Math.cos(solarDec) * Math.cos(angle) * Math.cos(latitude));
+  elevationAngle = radToDeg(elevationAngle); // in degrees
+  return elevationAngle;
 }
 
 module.exports = Sun;
