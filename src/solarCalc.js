@@ -98,8 +98,8 @@ class SolarCalc {
     return this.moon.illuminosity;
   }
 
-  get elevationAngle() {
-    return this.sun.elevationAngle();
+  get sunAltitude() {
+    return this.sun.sunAltitude();
   }
 }
 
