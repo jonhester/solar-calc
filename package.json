@@ -1,14 +1,14 @@
 {
   "name": "solar-calc",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A sunrise/sunset/moonrise/moonset calculator",
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
-    "compile": "npm run clean && ./node_modules/.bin/babel src --out-dir lib",
-    "prepublish": "npm run compile",
-    "test": "npm run compile && ./node_modules/.bin/mocha",
-    "lint": "./node_modules/.bin/eslint src",
+    "build": "babel src --out-dir lib",
+    "prepublish": "npm run build",
+    "test": "npm run build && mocha",
+    "lint": "eslint src",
     "clean": "rm -rf lib"
   },
   "repository": {
@@ -30,10 +30,12 @@
   },
   "homepage": "https://github.com/jonhester/solar-calc",
   "devDependencies": {
-    "babel": "^4.7.8",
-    "babel-eslint": "^2.0.0",
-    "eslint": "^0.16.0",
-    "mocha": "^2.2.0"
+    "@babel/cli": "^7.13.0",
+    "@babel/core": "^7.13.8",
+    "@babel/preset-env": "^7.13.9",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.21.0",
+    "mocha": "^8.3.0"
   },
   "dependencies": {}
 }

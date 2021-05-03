@@ -180,6 +180,10 @@ function isNumber(inputVal) {
 function getJD(date) {
   var year = date.getFullYear();
   var month = date.getMonth() + 1;
+  if (month < 3) {
+    year--;
+    month += 12;
+  }
   var day = date.getDate();
 
   var A = Math.floor(year / 100);
